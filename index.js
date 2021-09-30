@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { readdirSync } = require("fs");
-const admin = require("firebase-admin");
 require("dotenv").config();
 
 // app
@@ -20,12 +19,6 @@ mongoose
   })
   .then(() => console.log("DB CONNECTED"))
   .catch((err) => console.log(`DB CONNECTION ERR ${err}`));
-
-// FIREBASE
-const serviceAccount = JSON.parse(process.env.GOOGLE_CREDS);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
 
 // middlewares
 app.use(morgan("dev"));
